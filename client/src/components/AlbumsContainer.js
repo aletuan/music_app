@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Album from './Album';
 import { client } from '../Client';
+import VerticalMenu from './VerticalMenu';
 
 const ALBUM_IDS = [
   '23O4F21GDWiGd33tFN3ZgI',
@@ -18,10 +19,12 @@ class AlbumsContainer extends Component {
   };
 
   componentDidMount() {
+    console.log('client: component did mount');
     this.getAlbums();
   }
 
   getAlbums = () => {
+    console.log('client: get albums information');
     client.setToken('D6W69PRgCoDKgHZGJmRUNA');
     client.getAlbums(ALBUM_IDS)
       .then((albums) => (
@@ -45,6 +48,7 @@ class AlbumsContainer extends Component {
             style={{ maxWidth: 250 }}
           >
             {/* VerticalMenu will go here */}
+            <VerticalMenu albums={this.state.albums} />
           </div>
           <div className='ui ten wide column'>
             {
