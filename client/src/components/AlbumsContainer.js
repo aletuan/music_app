@@ -51,7 +51,10 @@ class AlbumsContainer extends Component {
             style={{ maxWidth: 250 }}
           >
             {/* VerticalMenu will go here */}
-            <VerticalMenu albums={this.state.albums} />
+            <VerticalMenu 
+              albums={this.state.albums} 
+              albumsPathname={matchPath}
+            />
           </div>
           <div className='ui ten wide column'>
             <Route

@@ -1,23 +1,27 @@
 import React from 'react';
 
-import '../styles/VerticalMenu.css';
 import { Link } from 'react-router-dom';
 
-const VerticalMenu = ({ albums }) => (
+import '../styles/VerticalMenu.css';
+
+const VerticalMenu = ({ albums, albumsPathname }) => (
   <div className='ui secondary vertical menu'>
     <div className='header item'>
       Albums
     </div>
     {
-      albums.map((album) => (
-        <Link 
-          to={`/albums/${album.id}`}
-          className='item'
+      albums.map((album) => {
+        const to = `${albumsPathname}/${album.id}`;
+        const active = window.location.pathname === to;
+        return (
+        <Link
+          to={to}
+          className={active ? 'active item' : 'item'}
           key={album.id}
         >
-        {album.name}
-        </Link>
-      ))
+          {album.name}
+        </Link> );
+      })
     }
   </div>
 );
