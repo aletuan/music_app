@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import '../styles/VerticalMenu.css';
 
@@ -14,13 +14,14 @@ const VerticalMenu = ({ albums, albumsPathname }) => (
         const to = `${albumsPathname}/${album.id}`;
         const active = window.location.pathname === to;
         return (
-        <Link
+        <NavLink
           to={to}
-          className={active ? 'active item' : 'item'}
+          className='item'
+          activeClassName='active'
           key={album.id}
         >
           {album.name}
-        </Link> );
+        </NavLink> );
       })
     }
   </div>
