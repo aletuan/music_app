@@ -31,6 +31,7 @@ class Client {
   }
 
   isLoggedIn() {
+    console.log('client => ' + !!this.token);
     return !!this.token;
   }
 
@@ -51,6 +52,7 @@ class Client {
   }
 
   removeToken() {
+    console.log('cient remove token');
     this.token = null;
 
     if (this.useLocalStorage) {
@@ -101,6 +103,7 @@ class Client {
   }
 
   logout() {
+    console.log('client => logout');
     this.removeToken();
   }
 

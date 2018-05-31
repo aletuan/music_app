@@ -1,4 +1,3 @@
-/* eslint-disable no-constant-condition */
 import React, { Component } from 'react';
 
 import { Redirect } from 'react-router-dom';
@@ -6,12 +5,28 @@ import { Redirect } from 'react-router-dom';
 import { client } from '../Client';
 
 class Login extends Component {
+  state = {
+    loginInProgress: false,
+    shouldRedirect: false,
+  };
+
+  performLogin = () => {
+    console.log('perform login');
+    this.setState({ loginInProgress: true });
+    client.login().then(() => (
+      this.setState({ shouldRedirect: true })
+    ));
+  };
+
   render() {
-    if ('todo') {
+    console.log('render in login');
+    if (this.state.shouldRedirect) {
+      console.log('should redirect to another page');
       return (
-        'todo'
+        <Redirect to='/albums' />
       );
     } else {
+      console.log('render in login page');
       return (
         <div className='ui one column centered grid'>
           <div className='ten wide column'>
@@ -23,7 +38,16 @@ class Login extends Component {
                 Fullstack Music
               </h2>
               {
-                /* todo */
+                this.state.loginInProgress ? (
+                  <div className='ui active centered inline loader' />
+                ) : (
+                  <div
+                    className='ui large green submit button'
+                    onClick={this.performLogin}
+                  >
+                    Login
+                  </div>
+                )
               }
             </div>
           </div>
